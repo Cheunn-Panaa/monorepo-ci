@@ -1,0 +1,11 @@
+{
+  "reporter": ["text", "lcov"],
+  "report-dir": "coverage",
+  "check-coverage": true,
+  "clean": true,
+  "functions": 90,
+  "branches": 90,
+  "statements": 90,
+  "per-file": true,
+  "exclude-after-remap": true
+}

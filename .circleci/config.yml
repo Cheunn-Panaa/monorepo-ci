@@ -9,18 +9,33 @@ jobs:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
-      - image: cimg/base:stable
+    - image: cimg/base:stable
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
-      - checkout
-      - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+    - checkout
+    - run:
+        name: "Say hello"
+        command: "echo Hello, World!"
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+  build-test-and-approval-deploy:
     jobs:
-      - say-hello
+    - build # your custom job from your config, that builds your code
+    - test1: # your custom job; runs test suite 1
+        requires: # test1 will not run until the `build` job is completed.
+        - build
+    - test2: # another custom job; runs test suite 2,
+        requires: # test2 is dependent on the success of job `test1`
+        - test1
+    - hold: # <<< A job that will require manual approval in the CircleCI web application.
+        type: approval # <<< This key-value pair will set your workflow to a status of "On Hold"
+        requires: # We only run the "hold" job when test2 has succeeded
+        - test2
+    # On approval of the `hold` job, any successive job that requires the `hold` job will run.
+    # In this case, a user is manually triggering the deploy job.
+    - deploy:
+        requires:
+        - hold
