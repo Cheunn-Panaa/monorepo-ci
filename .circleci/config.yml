@@ -4,8 +4,7 @@ setup: true
 
 orbs:
   # Please specify the latest version
-  split-config: bufferings/split-config@1.2.3
-
+  split-config: bufferings/split-config@0.1.0
 workflows:
   generate-config:
     jobs:
