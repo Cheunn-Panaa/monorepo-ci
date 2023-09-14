@@ -10,7 +10,7 @@ jobs:
 
       # Run the build for each component based on the matrix
       - run: |
-          cd apps/<<parameters.components>>
+          cd <<parameters.components>>
           circleci config process .circleci/config.yml > .circleci/processed-config.yml
           circleci local execute -c .circleci/processed-config.yml
 
