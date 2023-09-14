@@ -12,7 +12,7 @@ jobs:
       - run:
           name: Build component
           command: |
-            cd apps/<< parameters.components >>
+            cd apps/${{ parameters.components }}
             circleci config process .circleci/config.yml > .circleci/processed-config.yml
             circleci local execute -c .circleci/processed-config.yml
 
