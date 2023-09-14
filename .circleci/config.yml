@@ -10,9 +10,9 @@ jobs:
 
       # Run the build for each component based on the matrix
       - run:
-          name: Build component ${{ matrix.component }}
+          name: Build component ${{ parameters.component }}
           command: |
-            cd apps/${{ matrix.component }}
+            cd apps/${{ parameters.component }}
             circleci config process .circleci/config.yml > .circleci/processed-config.yml
             circleci local execute -c .circleci/processed-config.yml
 
@@ -22,6 +22,5 @@ workflows:
     jobs:
       - build:
           matrix:
-            components:
-              - sample-back
-              - sample-front
+            parameters:
+              components: ["sample-back", "sample-front"]
