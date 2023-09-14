@@ -11,10 +11,14 @@ jobs:
     - run: "echo build"
   deploy:
     docker:
-    - image: cimg/base:2023.06
+      - image: cimg/base:2023.06
+
+    parameters:
+      message:
+        type: string
     steps:
-    - checkout
-    - run: "echo deploy"
+      - checkout
+      - run: echo deploy << parameters.message >>
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -26,3 +30,6 @@ workflows:
         type: approval
         requires:
         - build
+        matrix:
+          parameters:
+            message: ["dev", "test1", "test2", "test3", "rct", "prd"]
