@@ -3,7 +3,7 @@
 version: 2.1
 
 jobs:
-  build:
+  build_toto:
     docker:
     - image: cimg/base:2023.06
     steps:
@@ -23,13 +23,13 @@ jobs:
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  build:
+  build_toto:
     jobs:
-    - build
+    - build_toto
     - deploy:
         type: approval
         requires:
-        - build
+        - build_toto
         matrix:
           parameters:
             message: ["dev", "test1", "test2", "test3", "rct", "prd"]
