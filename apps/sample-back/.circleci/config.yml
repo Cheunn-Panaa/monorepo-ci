@@ -3,7 +3,7 @@
 version: 2.1
 
 jobs:
-  buildtet:
+  build:
     docker:
     - image: cimg/base:2023.06
     steps:
@@ -23,13 +23,13 @@ jobs:
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  build_dos:
+  build:
     jobs:
-    - buildtet
+    - build
     - deploy:
         type: approval
         requires:
-        - buildtet
+        - build
         matrix:
           parameters:
             message: ["dev", "test1", "test2", "test3", "rct", "prd"]
