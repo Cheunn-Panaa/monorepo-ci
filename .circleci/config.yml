@@ -21,6 +21,6 @@ workflows:
   build:
     jobs:
       - build:
-          matrix:
-            parameters:
-              components: ["sample-back", "sample-front"]
+        matrix:
+          parameters:
+            components: ["sample-back", "sample-front"]
