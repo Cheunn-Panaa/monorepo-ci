@@ -2,27 +2,26 @@ version: 2.1
 
 jobs:
   build:
-    executor: docker-executor
+    docker:
+      - image: circleci/python:3.8  # Use an appropriate base image for your project
+
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
+
+      # Run the build for each component based on the matrix
       - run:
-          name: Execute matrix job
+          name: Build component ${{ matrix.component }}
           command: |
-            circleci local execute -c apps/$MATRIX_VALUE/.circleci/config.yml --job build
+            cd apps/${{ matrix.component }}
+            circleci config process .circleci/config.yml > .circleci/processed-config.yml
+            circleci local execute -c .circleci/processed-config.yml
+
 workflows:
   version: 2
   build:
     jobs:
       - build:
           matrix:
-            name: MATRIX_VALUE
-            values:
+            components:
               - sample-back
               - sample-front
-
-executors:
-  docker-executor:
-    docker:
-      - image: your-docker-image # Replace with your desired Docker image
