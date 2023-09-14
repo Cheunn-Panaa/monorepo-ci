@@ -8,7 +8,7 @@ jobs:
     - image: cimg/base:2023.06
     steps:
     - checkout
-    - run: "echo build front"
+    - run: "echo build"
   deploy:
     docker:
       - image: cimg/base:2023.06
@@ -18,7 +18,7 @@ jobs:
         type: string
     steps:
       - checkout
-      - run: echo deploy front please work << parameters.message >>
+      - run: echo deploy << parameters.message >>
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -33,4 +33,3 @@ workflows:
         matrix:
           parameters:
             message: ["dev", "test1", "test2", "test3", "rct", "prd"]
-        name: deploy-<< matrix.message >>
