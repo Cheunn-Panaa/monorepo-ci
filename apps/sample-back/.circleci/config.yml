@@ -29,7 +29,7 @@ workflows:
     - deploy:
         type: approval
         requires:
-        - build
+        - buildtet
         matrix:
           parameters:
             message: ["dev", "test1", "test2", "test3", "rct", "prd"]
