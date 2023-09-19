@@ -1,0 +1,23 @@
+name: Deployment
+
+on:
+  push:
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - environment: dev
+            url: https://dev.my.service
+          - environment: rct
+            url: https://rct.my.service
+          - environment: sta
+            url: https://sta.my.service
+    environment:
+      url: ${{ matrix.url }}
+      name: ${{ matrix.environment }}
+    steps:
+      - name: Deploy
+        run: echo "Ting tong"
