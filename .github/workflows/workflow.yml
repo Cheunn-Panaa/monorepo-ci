@@ -4,7 +4,21 @@ on:
   push:
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        app: ["coop-back", "coop-front"]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      packages: write
+    steps:
+      - name: test
+        run: echo "Ting tong"
   deployment:
+    needs: [build]
     runs-on: ubuntu-latest
     strategy:
       matrix:
