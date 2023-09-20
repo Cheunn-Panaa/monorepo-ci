@@ -8,6 +8,13 @@ jobs:
     strategy:
       matrix:
         app: ["coop-back", "coop-front"]
+        env: ["dev", "rct"]
+        include:
+          - app: coop-back
+          - app: coop-front
+            env: dev
+          - app: coop-front
+            env: rct
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -21,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        environment: [dev, rct, sta]
+        environment: [dev, rct]
         app: [coop-front, coop-back]
     environment:
       name: ${{ matrix.environment }}
