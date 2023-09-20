@@ -1,0 +1,1 @@
+ignores: ["pg", "pg-hstore", "@types/eslint", "@types/pg", "~", "@trivago/prettier-plugin-sort-imports"]

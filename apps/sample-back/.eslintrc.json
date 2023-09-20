@@ -1,0 +1,133 @@
+{
+  "env": {
+    "es2021": true,
+    "node": true
+  },
+  "root": true,
+  "extends": [
+    "eslint:recommended",
+    "prettier",
+    "plugin:@typescript-eslint/strict",
+    "plugin:import/recommended",
+    "plugin:import/typescript"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "settings": {
+    "import/resolver": {
+      "typescript": true,
+      "node": true
+    }
+  },
+  "parserOptions": {
+    "project": true
+  },
+  "ignorePatterns": ["node_modules"],
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    // https://eslint.org/docs/latest/rules/#possible-problems
+    "no-constructor-return": "error",
+    "no-duplicate-imports": "error",
+    "no-new-native-nonconstructor": "error",
+    "no-unused-private-class-members": "error",
+    // https://eslint.org/docs/latest/rules/#suggestions
+    "block-scoped-var": "error",
+    "camelcase": "error",
+    "curly": ["error", "multi"],
+    "default-case": "error",
+    "default-case-last": "error",
+    "eqeqeq": "error",
+    "new-cap": ["error", { "capIsNewExceptions": ["STRING"] }],
+    "no-alert": "error",
+    "no-caller": "error",
+    "no-confusing-arrow": "error",
+    "no-console": "error",
+    "no-empty-static-block": "error",
+    "no-eq-null": "error",
+    "no-eval": "error",
+    "no-extend-native": "error",
+    "no-extra-bind": "error",
+    "no-floating-decimal": "error",
+    "no-implicit-globals": "error",
+    "no-lonely-if": "error",
+    "no-multi-assign": "error",
+    "no-new": "error",
+    "no-new-func": "error",
+    "no-new-object": "error",
+    "no-new-wrappers": "error",
+    "no-param-reassign": "error",
+    "no-return-assign": "error",
+    "no-sequences": "error",
+    "no-unneeded-ternary": "error",
+    "no-useless-call": "error",
+    "no-useless-computed-key": "error",
+    "no-useless-concat": "error",
+    "no-useless-constructor": "error",
+    "no-useless-return": "error",
+    "no-var": "error",
+    "object-shorthand": "error",
+    "one-var-declaration-per-line": "error",
+    "prefer-const": "error",
+    "prefer-rest-params": "error",
+    "prefer-spread": "error",
+    "prefer-template": "error",
+    "require-unicode-regexp": "error",
+    // https://eslint.org/docs/latest/rules/#layout--formatting
+    "eol-last": "error",
+    "linebreak-style": "error",
+
+    //
+    // TypeScript rules
+    // https://typescript-eslint.io/rules/
+    //
+
+    // typescript eslint classic rules
+    "@typescript-eslint/consistent-type-exports": [
+      "error",
+      { "fixMixedExportsWithInlineTypeSpecifier": false }
+    ],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports",
+        "fixStyle": "inline-type-imports"
+      }
+    ],
+
+    // typescript eslint extension rules
+    "class-methods-use-this": "off",
+    "@typescript-eslint/class-methods-use-this": "error",
+    "dot-notation": "off",
+    "@typescript-eslint/dot-notation": "error",
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "error",
+    "no-implied-eval": "error",
+    "@typescript-eslint/no-implied-eval": "error",
+    "no-invalid-this": "off",
+    "@typescript-eslint/no-invalid-this": "error",
+    "no-loss-of-precision": "off",
+    "@typescript-eslint/no-loss-of-precision": "error",
+    "no-unused-expressions": "off",
+    "@typescript-eslint/no-unused-expressions": "error",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "error",
+    "require-await": "off",
+    "@typescript-eslint/require-await": "error",
+
+    //
+    // Import rules
+    //
+
+    "import/no-useless-path-segments": [
+      "error",
+      {
+        "noUselessIndex": true
+      }
+    ],
+    "import/no-unused-modules": ["error", { "unusedExports": true }],
+    "import/no-duplicates": ["error", { "prefer-inline": true }],
+    "import/consistent-type-specifier-style": ["error", "prefer-inline"],
+    "import/first": "error",
+    "import/no-named-default": "error",
+    "import/no-default-export": "error"
+  }
+}
