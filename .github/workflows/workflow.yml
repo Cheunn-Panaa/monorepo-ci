@@ -4,7 +4,17 @@ on:
   push:
 
 jobs:
+  changes:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
+      packages: write
+    steps:
+      - name: create matrix
+        run: echo "Ting tong"
   build:
+    needs: [changes]
     strategy:
       matrix:
         include:
@@ -28,6 +38,18 @@ jobs:
       matrix:
         environment: [dev, rct]
         app: [coop-front, coop-back]
+    environment:
+      name: ${{ matrix.environment }}
+    steps:
+      - name: Deploy
+        run: echo "Ting tong"
+
+  deployment-v2:
+    needs: [build]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, rct]
     environment:
       name: ${{ matrix.environment }}
     steps:
