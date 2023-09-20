@@ -7,8 +7,6 @@ jobs:
   build:
     strategy:
       matrix:
-        app: ["coop-back", "coop-front"]
-        env: ["dev", "rct"]
         include:
           - app: coop-back
           - app: coop-front
